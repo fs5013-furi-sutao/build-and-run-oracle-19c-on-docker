@@ -1,4 +1,4 @@
-# Docker + Oracle 19c + 公式サンプルデータ + ER図自動生成
+# Docker + Oracle 19c + 初期データ自動投入 + ER図自動生成
 
 ## 概要
 
