@@ -418,4 +418,4 @@ open schemaspy/index.html
 ![テーブル一覧](./media/schemaspy-tables-list.png)
 
 `SchemaSpy ER図`
-![ER図](./media/schemaspy-schemaspy-er-diagrams.png)
+![ER図](./media/schemaspy-er-diagrams.png)
