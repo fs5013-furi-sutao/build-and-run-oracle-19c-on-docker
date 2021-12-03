@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="ORCLPDB1" schema="HARDWARE_SHOP" type="Oracle - Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production&#10;Version 19.3.0.0.0">
+   <tables>
+      <table name="CONTACTS" numRows="0" remarks="" schema="HARDWARE_SHOP" type="TABLE">
+         <column autoUpdated="false" defaultValue="&quot;HARDWARE_SHOP&quot;.&quot;ISEQ$$_73057&quot;.nextval" digits="-127" id="0" name="CONTACT_ID" nullable="false" remarks="" size="0" type="NUMBER" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="FIRST_NAME" nullable="false" remarks="" size="255" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="LAST_NAME" nullable="false" remarks="" size="255" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="EMAIL" nullable="false" remarks="" size="255" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="PHONE" nullable="true" remarks="" size="20" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="-127" id="5" name="CUSTOMER_ID" nullable="true" remarks="" size="0" type="NUMBER" typeCode="2">
+            <parent column="CUSTOMER_ID" foreignKey="FK_CONTACTS_CUSTOMERS" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="CUSTOMERS"/>
+         </column>
+         <primaryKey column="CONTACT_ID" sequenceNumberInPK="1"/>
+         <index name="SYS_C007583" unique="true">
+            <column ascending="true" name="CONTACT_ID"/>
+         </index>
+      </table>
+      <table name="COUNTRIES" numRows="0" remarks="" schema="HARDWARE_SHOP" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="COUNTRY_ID" nullable="false" remarks="" size="2" type="CHAR" typeCode="1">
+            <child column="COUNTRY_ID" foreignKey="FK_LOCATIONS_COUNTRIES" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="LOCATIONS"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="COUNTRY_NAME" nullable="false" remarks="" size="40" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="-127" id="2" name="REGION_ID" nullable="true" remarks="" size="0" type="NUMBER" typeCode="2">
+            <parent column="REGION_ID" foreignKey="FK_COUNTRIES_REGIONS" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="REGIONS"/>
+         </column>
+         <primaryKey column="COUNTRY_ID" sequenceNumberInPK="1"/>
+         <index name="SYS_C007550" unique="true">
+            <column ascending="true" name="COUNTRY_ID"/>
+         </index>
+      </table>
+      <table name="CUSTOMERS" numRows="0" remarks="" schema="HARDWARE_SHOP" type="TABLE">
+         <column autoUpdated="false" defaultValue="&quot;HARDWARE_SHOP&quot;.&quot;ISEQ$$_73054&quot;.nextval" digits="-127" id="0" name="CUSTOMER_ID" nullable="false" remarks="" size="0" type="NUMBER" typeCode="2">
+            <child column="CUSTOMER_ID" foreignKey="FK_CONTACTS_CUSTOMERS" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="CONTACTS"/>
+            <child column="CUSTOMER_ID" foreignKey="FK_ORDERS_CUSTOMERS" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="ORDERS"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="NAME" nullable="false" remarks="" size="255" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="ADDRESS" nullable="true" remarks="" size="255" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="WEBSITE" nullable="true" remarks="" size="255" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="4" name="CREDIT_LIMIT" nullable="true" remarks="" size="8" type="NUMBER" typeCode="2"/>
+         <primaryKey column="CUSTOMER_ID" sequenceNumberInPK="1"/>
+         <index name="SYS_C007578" unique="true">
+            <column ascending="true" name="CUSTOMER_ID"/>
+         </index>
+      </table>
+      <table name="EMPLOYEES" numRows="0" remarks="" schema="HARDWARE_SHOP" type="TABLE">
+         <column autoUpdated="false" defaultValue="&quot;HARDWARE_SHOP&quot;.&quot;ISEQ$$_73045&quot;.nextval" digits="-127" id="0" name="EMPLOYEE_ID" nullable="false" remarks="" size="0" type="NUMBER" typeCode="2">
+            <child column="MANAGER_ID" foreignKey="FK_EMPLOYEES_MANAGER" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="EMPLOYEES"/>
+            <child column="SALESMAN_ID" foreignKey="FK_ORDERS_EMPLOYEES" implied="false" onDeleteCascade="false" schema="HARDWARE_SHOP" table="ORDERS"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="FIRST_NAME" nullable="false" remarks="" size="255" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="LAST_NAME" nullable="false" remarks="" size="255" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="EMAIL" nullable="false" remarks="" size="255" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="PHONE" nullable="false" remarks="" size="50" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="HIRE_DATE" nullable="false" remarks="" size="7" type="DATE" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="MANAGER_ID" nullable="true" remarks="" size="12" type="NUMBER" typeCode="2">
+            <parent column="EMPLOYEE_ID" foreignKey="FK_EMPLOYEES_MANAGER" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="EMPLOYEES"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="JOB_TITLE" nullable="false" remarks="" size="255" type="VARCHAR2" typeCode="12"/>
+         <primaryKey column="EMPLOYEE_ID" sequenceNumberInPK="1"/>
+         <index name="SYS_C007566" unique="true">
+            <column ascending="true" name="EMPLOYEE_ID"/>
+         </index>
+      </table>
+      <table name="INVENTORIES" numRows="0" remarks="" schema="HARDWARE_SHOP" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="PRODUCT_ID" nullable="false" remarks="" size="12" type="NUMBER" typeCode="2">
+            <parent column="PRODUCT_ID" foreignKey="FK_INVENTORIES_PRODUCTS" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="PRODUCTS"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="WAREHOUSE_ID" nullable="false" remarks="" size="12" type="NUMBER" typeCode="2">
+            <parent column="WAREHOUSE_ID" foreignKey="FK_INVENTORIES_WAREHOUSES" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="WAREHOUSES"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="QUANTITY" nullable="false" remarks="" size="8" type="NUMBER" typeCode="2"/>
+         <primaryKey column="PRODUCT_ID" sequenceNumberInPK="1"/>
+         <primaryKey column="WAREHOUSE_ID" sequenceNumberInPK="2"/>
+         <index name="PK_INVENTORIES" unique="true">
+            <column ascending="true" name="PRODUCT_ID"/>
+            <column ascending="true" name="WAREHOUSE_ID"/>
+         </index>
+      </table>
+      <table name="LOCATIONS" numRows="0" remarks="" schema="HARDWARE_SHOP" type="TABLE">
+         <column autoUpdated="false" defaultValue="&quot;HARDWARE_SHOP&quot;.&quot;ISEQ$$_73039&quot;.nextval" digits="-127" id="0" name="LOCATION_ID" nullable="false" remarks="" size="0" type="NUMBER" typeCode="2">
+            <child column="LOCATION_ID" foreignKey="FK_WAREHOUSES_LOCATIONS" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="WAREHOUSES"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ADDRESS" nullable="false" remarks="" size="255" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="POSTAL_CODE" nullable="true" remarks="" size="20" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="CITY" nullable="true" remarks="" size="50" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="STATE" nullable="true" remarks="" size="50" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="COUNTRY_ID" nullable="true" remarks="" size="2" type="CHAR" typeCode="1">
+            <parent column="COUNTRY_ID" foreignKey="FK_LOCATIONS_COUNTRIES" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="COUNTRIES"/>
+         </column>
+         <primaryKey column="LOCATION_ID" sequenceNumberInPK="1"/>
+         <index name="SYS_C007554" unique="true">
+            <column ascending="true" name="LOCATION_ID"/>
+         </index>
+      </table>
+      <table name="ORDER_ITEMS" numRows="0" remarks="" schema="HARDWARE_SHOP" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="ORDER_ID" nullable="false" remarks="" size="12" type="NUMBER" typeCode="2">
+            <parent column="ORDER_ID" foreignKey="FK_ORDER_ITEMS_ORDERS" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="ORDERS"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="ITEM_ID" nullable="false" remarks="" size="12" type="NUMBER" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="PRODUCT_ID" nullable="false" remarks="" size="12" type="NUMBER" typeCode="2">
+            <parent column="PRODUCT_ID" foreignKey="FK_ORDER_ITEMS_PRODUCTS" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="PRODUCTS"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="3" name="QUANTITY" nullable="false" remarks="" size="8" type="NUMBER" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="4" name="UNIT_PRICE" nullable="false" remarks="" size="8" type="NUMBER" typeCode="2"/>
+         <primaryKey column="ITEM_ID" sequenceNumberInPK="1"/>
+         <primaryKey column="ORDER_ID" sequenceNumberInPK="2"/>
+         <index name="PK_ORDER_ITEMS" unique="true">
+            <column ascending="true" name="ORDER_ID"/>
+            <column ascending="true" name="ITEM_ID"/>
+         </index>
+      </table>
+      <table name="ORDERS" numRows="0" remarks="" schema="HARDWARE_SHOP" type="TABLE">
+         <column autoUpdated="false" defaultValue="&quot;HARDWARE_SHOP&quot;.&quot;ISEQ$$_73060&quot;.nextval" digits="-127" id="0" name="ORDER_ID" nullable="false" remarks="" size="0" type="NUMBER" typeCode="2">
+            <child column="ORDER_ID" foreignKey="FK_ORDER_ITEMS_ORDERS" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="ORDER_ITEMS"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="CUSTOMER_ID" nullable="false" remarks="" size="6" type="NUMBER" typeCode="2">
+            <parent column="CUSTOMER_ID" foreignKey="FK_ORDERS_CUSTOMERS" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="CUSTOMERS"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="STATUS" nullable="false" remarks="" size="20" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="SALESMAN_ID" nullable="true" remarks="" size="6" type="NUMBER" typeCode="2">
+            <parent column="EMPLOYEE_ID" foreignKey="FK_ORDERS_EMPLOYEES" implied="false" onDeleteCascade="false" schema="HARDWARE_SHOP" table="EMPLOYEES"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="ORDER_DATE" nullable="false" remarks="" size="7" type="DATE" typeCode="93"/>
+         <primaryKey column="ORDER_ID" sequenceNumberInPK="1"/>
+         <index name="SYS_C007589" unique="true">
+            <column ascending="true" name="ORDER_ID"/>
+         </index>
+      </table>
+      <table name="PRODUCT_CATEGORIES" numRows="0" remarks="" schema="HARDWARE_SHOP" type="TABLE">
+         <column autoUpdated="false" defaultValue="&quot;HARDWARE_SHOP&quot;.&quot;ISEQ$$_73048&quot;.nextval" digits="-127" id="0" name="CATEGORY_ID" nullable="false" remarks="" size="0" type="NUMBER" typeCode="2">
+            <child column="CATEGORY_ID" foreignKey="FK_PRODUCTS_CATEGORIES" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="PRODUCTS"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="CATEGORY_NAME" nullable="false" remarks="" size="255" type="VARCHAR2" typeCode="12"/>
+         <primaryKey column="CATEGORY_ID" sequenceNumberInPK="1"/>
+         <index name="SYS_C007570" unique="true">
+            <column ascending="true" name="CATEGORY_ID"/>
+         </index>
+      </table>
+      <table name="PRODUCTS" numRows="0" remarks="" schema="HARDWARE_SHOP" type="TABLE">
+         <column autoUpdated="false" defaultValue="&quot;HARDWARE_SHOP&quot;.&quot;ISEQ$$_73051&quot;.nextval" digits="-127" id="0" name="PRODUCT_ID" nullable="false" remarks="" size="0" type="NUMBER" typeCode="2">
+            <child column="PRODUCT_ID" foreignKey="FK_INVENTORIES_PRODUCTS" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="INVENTORIES"/>
+            <child column="PRODUCT_ID" foreignKey="FK_ORDER_ITEMS_PRODUCTS" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="ORDER_ITEMS"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="PRODUCT_NAME" nullable="false" remarks="" size="255" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="DESCRIPTION" nullable="true" remarks="" size="2000" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="3" name="STANDARD_COST" nullable="true" remarks="" size="9" type="NUMBER" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="4" name="LIST_PRICE" nullable="true" remarks="" size="9" type="NUMBER" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="-127" id="5" name="CATEGORY_ID" nullable="false" remarks="" size="0" type="NUMBER" typeCode="2">
+            <parent column="CATEGORY_ID" foreignKey="FK_PRODUCTS_CATEGORIES" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="PRODUCT_CATEGORIES"/>
+         </column>
+         <primaryKey column="PRODUCT_ID" sequenceNumberInPK="1"/>
+         <index name="SYS_C007574" unique="true">
+            <column ascending="true" name="PRODUCT_ID"/>
+         </index>
+      </table>
+      <table name="REGIONS" numRows="0" remarks="" schema="HARDWARE_SHOP" type="TABLE">
+         <column autoUpdated="false" defaultValue="&quot;HARDWARE_SHOP&quot;.&quot;ISEQ$$_73034&quot;.nextval" digits="-127" id="0" name="REGION_ID" nullable="false" remarks="" size="0" type="NUMBER" typeCode="2">
+            <child column="REGION_ID" foreignKey="FK_COUNTRIES_REGIONS" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="COUNTRIES"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="REGION_NAME" nullable="false" remarks="" size="50" type="VARCHAR2" typeCode="12"/>
+         <primaryKey column="REGION_ID" sequenceNumberInPK="1"/>
+         <index name="SYS_C007548" unique="true">
+            <column ascending="true" name="REGION_ID"/>
+         </index>
+      </table>
+      <table name="WAREHOUSES" numRows="0" remarks="" schema="HARDWARE_SHOP" type="TABLE">
+         <column autoUpdated="false" defaultValue="&quot;HARDWARE_SHOP&quot;.&quot;ISEQ$$_73042&quot;.nextval" digits="-127" id="0" name="WAREHOUSE_ID" nullable="false" remarks="" size="0" type="NUMBER" typeCode="2">
+            <child column="WAREHOUSE_ID" foreignKey="FK_INVENTORIES_WAREHOUSES" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="INVENTORIES"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="WAREHOUSE_NAME" nullable="true" remarks="" size="255" type="VARCHAR2" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="LOCATION_ID" nullable="true" remarks="" size="12" type="NUMBER" typeCode="2">
+            <parent column="LOCATION_ID" foreignKey="FK_WAREHOUSES_LOCATIONS" implied="false" onDeleteCascade="true" schema="HARDWARE_SHOP" table="LOCATIONS"/>
+         </column>
+         <primaryKey column="WAREHOUSE_ID" sequenceNumberInPK="1"/>
+         <index name="SYS_C007557" unique="true">
+            <column ascending="true" name="WAREHOUSE_ID"/>
+         </index>
+      </table>
+   </tables>
+</database>
